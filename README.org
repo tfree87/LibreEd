@@ -1,0 +1,31 @@
+#+options: ':nil *:t -:t ::t <:t H:3 \n:nil ^:t arch:headline
+#+options: author:t broken-links:nil c:nil creator:nil
+#+options: d:(not "LOGBOOK") date:t e:t email:nil f:t inline:t num:t
+#+options: p:nil pri:nil prop:nil stat:t tags:t tasks:t tex:t
+#+options: timestamp:t title:t toc:t todo:t |:t
+#+title: README
+#+date: <2022-01-11 Tue>
+#+author: Thomas Freeman
+#+language: en
+#+select_tags: export
+#+exclude_tags: noexport
+#+creator: Emacs 27.1 (Org mode 9.4.6)
+#+cite_export:
+
+* About
+This project at the moment is essentially a set of goals at this point rather than a software product.
+* Goals
+The goals of this project are as follows in order of importance:
+1. Provide the following services that can be self-hosted or loaded onto a server of choice:
+   - A free/libre student information system (SIS) that could be used on a school system server.
+   - A free/libre content management system to send content to students
+   - A free/libre assessment creation system
+2. Create a system for detailed analysis of student scores
+   - This system would use valid statistical methods to analyze data in the most informative manner
+   - Ideally, the system would implement machine learning on assessments created in the system to analyze student data in order to weigh questions by difficulty and offer suggestions for student improvement.
+* systems?
+- These systems are vital to the operations of modern schools and currently there are only propriety/paid services most of these services.
+- With closed-source development of these services, it is difficult for community members to create extensions, bug-fixes, and improvements.
+- School districts could customize their setup and tailor it to their needs.
+- A free/libre system could be expanded upon and used in schools worldwide.
+- School systems could self-host the software on their own servers or choose a web service provider of their own choosing.
