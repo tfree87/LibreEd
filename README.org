@@ -23,7 +23,7 @@ The goals of this project are as follows in order of importance:
 2. Create a system for detailed analysis of student scores
    - This system would use valid statistical methods to analyze data in the most informative manner
    - Ideally, the system would implement machine learning on assessments created in the system to analyze student data in order to weigh questions by difficulty and offer suggestions for student improvement.
-* systems?
+* Why?
 - These systems are vital to the operations of modern schools and currently there are only propriety/paid services most of these services.
 - With closed-source development of these services, it is difficult for community members to create extensions, bug-fixes, and improvements.
 - School districts could customize their setup and tailor it to their needs.
