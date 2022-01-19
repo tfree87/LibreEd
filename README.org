@@ -38,12 +38,14 @@ Here is a diagram of the proposed structure of what I wish to accomplish general
   actor User
   interface WebUI
 
+  file PDF
+
   cloud Server {
   component Django
   component "Machine Learning" as ML
   component "Assessment Generator" as AG
 
-  file PDF
+
 
   database PostgreSQL{
   collections "Student Information" as SI
@@ -69,6 +71,7 @@ Here is a diagram of the proposed structure of what I wish to accomplish general
   AG --> Assessments : Create Scaled Assessment
   AG --> PDF : Export Assessment
   Questions --> Assessments : Link
+
   @enduml
 #+end_src
 
