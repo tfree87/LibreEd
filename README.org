@@ -30,6 +30,9 @@ The goals of this project are as follows in order of importance:
 - A free/libre system could be expanded upon and used in schools worldwide.
 - School systems could self-host the software on their own servers or choose a web service provider of their own choosing.
 * Development Plan
+** Overview
+This section covers an outline of where this project is planned to go and how to go about developing this project.
+*** Structure
 Here is a diagram of the proposed structure of what I wish to accomplish generally:
 #+begin_src plantuml :exports results :file diagram.png
   @startuml
@@ -74,4 +77,77 @@ Here is a diagram of the proposed structure of what I wish to accomplish general
 
 #+RESULTS:
 [[file:diagram.png]]
-     
+*** Classes/Django Models
+The following diagram shows the proposed classes that will be created as Django models that will be used by Django to make database tables in PostgreSQL:
+#+begin_src plantuml :exports results :file classes.png
+  @startuml
+
+  class Student {
+  id : integer
+  first_name : string
+  last_name : string
+  age : integer
+  }
+
+  class Standard {
+  id_uudid4 : string
+  name : string
+  full_text : string
+  short_text : string
+  }
+
+  class Assessment {
+  id_uuid4 : string
+  qustions : set
+  max_score : int
+  timed_assessment : boolean
+  time : DateTime
+  number_of_attempts : integer
+  password : string
+  display_answers_at_end : boolean
+  display_score_at_end : boolean
+  }
+
+  class Question {
+  id_uuid4 : string
+  max_score : int
+  }
+
+  class MultipleChoiceQ {
+  text : string
+  answers : dict
+  }
+
+  class ShortAnswerQ {
+  text : string
+  answers : dict
+  }
+
+  class DragNDropQ {
+  answers : dict
+  }
+
+  class LongAnswerQ {
+  text : string
+  }
+
+  Assessment o-- Question
+  Question <|-- ShortAnswerQ
+  Question <|-- MultipleChoiceQ
+  Question <|-- DragNDropQ
+  Question <|-- LongAnswerQ
+
+  @enduml
+#+end_src
+
+#+RESULTS:
+[[file:classes.png]]
+
+** Priorities
+1. Digital gradebook software
+   The priority of any education system is to track grades.
+2. Student information system
+   
+3. Digital content server
+4. Assessment creator
+5. Machine learning
