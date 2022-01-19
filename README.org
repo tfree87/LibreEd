@@ -41,15 +41,16 @@ Here is a diagram of the proposed structure of what I wish to accomplish general
   cloud Server {
   component Django
   component "Machine Learning" as ML
-  component "Assignment Generator" as AG
+  component "Assessment Generator" as AG
 
-  file Assessment
+  file PDF
 
   database PostgreSQL{
   collections "Student Information" as SI
   collections Grades
+  collections "Assessment Scores" as AS
+  collections "Question Bank" as Questions
   collections Assessments
-  collections Questions
   }
   }
 
@@ -57,16 +58,17 @@ Here is a diagram of the proposed structure of what I wish to accomplish general
   WebUI --> Django : Request
   Django --> PostgreSQL : Query
   Django --> WebUI : Update
-  PostgreSQL --> Django : Result
+  Django <-- PostgreSQL : Result
 
-  Assessments --> Grades : Set Grades
+  AS --> Grades : Set Grades
   ML <-- Grades : Analyze
-  ML <-- Assessments : Analyze
+  ML <-- AS : Analyze
   ML --> Questions : Set Question Difficulty Factor
   Questions <-- AG : Query Questions
   Questions --> AG : Return Questions Matching Query
-  AG --> Assessment : Create Scaled Assessment
-  Assessment --> Assessments : Record Scores
+  AG --> Assessments : Create Scaled Assessment
+  AG --> PDF : Export Assessment
+  Questions --> Assessments : Link
   @enduml
 #+end_src
 
