@@ -31,7 +31,7 @@ The goals of this project are as follows in order of importance:
 - School systems could self-host the software on their own servers or choose a web service provider of their own choosing.
 * Development Plan
 Here is a diagram of the proposed structure of what I wish to accomplish generally:
-#+begin_src plantuml :file diagram.png
+#+begin_src plantuml :exports results :file diagram.png
   @startuml
   skinparam defaultTextAlignment center
 
