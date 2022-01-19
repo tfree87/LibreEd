@@ -29,3 +29,47 @@ The goals of this project are as follows in order of importance:
 - School districts could customize their setup and tailor it to their needs.
 - A free/libre system could be expanded upon and used in schools worldwide.
 - School systems could self-host the software on their own servers or choose a web service provider of their own choosing.
+* Development Plan
+Here is a diagram of the proposed structure of what I wish to accomplish generally:
+#+begin_src plantuml :file diagram.png
+  @startuml
+  skinparam defaultTextAlignment center
+
+  actor User
+  interface WebUI
+
+  cloud Server {
+  component Django
+  component "Machine Learning" as ML
+  component "Assignment Generator" as AG
+
+  file Assessment
+
+  database PostgreSQL{
+  collections "Student Information" as SI
+  collections Grades
+  collections Assessments
+  collections Questions
+  }
+  }
+
+  User --> WebUI : User Input
+  WebUI --> Django : Request
+  Django --> PostgreSQL : Query
+  Django --> WebUI : Update
+  PostgreSQL --> Django : Result
+
+  Assessments --> Grades : Set Grades
+  ML <-- Grades : Analyze
+  ML <-- Assessments : Analyze
+  ML --> Questions : Set Question Difficulty Factor
+  Questions <-- AG : Query Questions
+  Questions --> AG : Return Questions Matching Query
+  AG --> Assessment : Create Scaled Assessment
+  Assessment --> Assessments : Record Scores
+  @enduml
+#+end_src
+
+#+RESULTS:
+[[file:diagram.png]]
+     
