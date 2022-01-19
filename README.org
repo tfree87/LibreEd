@@ -45,11 +45,9 @@ Here is a diagram of the proposed structure of what I wish to accomplish general
   component "Machine Learning" as ML
   component "Assessment Generator" as AG
 
-
-
   database PostgreSQL{
   collections "Student Information" as SI
-  collections Grades
+  collections "Student Grades" as Grades
   collections "Assessment Scores" as AS
   collections "Question Bank" as Questions
   collections Assessments
@@ -57,19 +55,18 @@ Here is a diagram of the proposed structure of what I wish to accomplish general
   }
 
   User --> WebUI : User Input
-  WebUI --> Django : Request
-  Django --> PostgreSQL : Query
-  Django --> WebUI : Update
-  Django <-- PostgreSQL : Result
-
+  WebUI <-->> Django : Request
+  Django <-->> PostgreSQL : Query
+  Django <-->> AG : Request Assessement
+  
+  
   AS --> Grades : Set Grades
-  ML <-- Grades : Analyze
+  ML <-[hidden]- Grades : Analyze
   ML <-- AS : Analyze
   ML --> Questions : Set Question Difficulty Factor
-  Questions <-- AG : Query Questions
-  Questions --> AG : Return Questions Matching Query
+  Questions <-->> AG : Query
   AG --> Assessments : Create Scaled Assessment
-  AG --> PDF : Export Assessment
+  AG --> PDF : Export
   Questions --> Assessments : Link
 
   @enduml
