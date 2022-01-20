@@ -133,7 +133,7 @@ Classes for the student information system app:
 
 **** Assessment Creator
 Classes for the assessment creator app:
- #+begin_src plantuml :file ac_classes.png
+ #+begin_src plantuml :exports results :file ac_classes.png
    @startuml
 
    class Standard {
