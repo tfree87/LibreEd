@@ -82,6 +82,25 @@ The following diagram shows the proposed classes that will be created as Django 
 #+begin_src plantuml :exports results :file classes.png
   @startuml
 
+  class GradeBook {
+  class_uuid4 : string
+  class_name : string
+  students : dict
+  assessments : dict
+  grades : dict
+  }
+
+  class Grade {
+  student_id : int
+  assessment_uuid4 : string
+  student_score : int
+  max_score : int
+  late : boolean
+  missing : boolean
+  excused : boolean
+  incomplete : boolean
+  }
+
   class Student {
   id : integer
   first_name : string
@@ -100,10 +119,15 @@ The following diagram shows the proposed classes that will be created as Django 
   id_uuid4 : string
   qustions : set
   max_score : int
+  due_date : DateTime
+  publish_date : DateTime
+  unpublish_date : DateTime
+  published : Boolean
   timed_assessment : boolean
   time : DateTime
   number_of_attempts : integer
   password : string
+  accept_responses : boolean
   display_answers_at_end : boolean
   display_score_at_end : boolean
   }
@@ -136,6 +160,8 @@ The following diagram shows the proposed classes that will be created as Django 
   Question <|-- MultipleChoiceQ
   Question <|-- DragNDropQ
   Question <|-- LongAnswerQ
+
+  GradeBook o-- Grade
 
   @enduml
 #+end_src
