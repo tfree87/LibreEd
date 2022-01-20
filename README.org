@@ -171,9 +171,7 @@ The following diagram shows the proposed classes that will be created as Django 
 
 ** Priorities
 1. Digital gradebook software
-   The priority of any education system is to track grades.
-2. Student information system
-   
+2. Student information system   
 3. Digital content server
 4. Assessment creator
 5. Machine learning
