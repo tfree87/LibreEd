@@ -83,76 +83,77 @@ The following diagram shows the proposed classes that will be created as Django 
   @startuml
 
   class GradeBook {
-  class_uuid4 : string
-  class_name : string
-  students : dict
-  assessments : dict
-  grades : dict
+  class_uuid4 : UUIDfield
+  class_name : CharField
+  students : CharField
+  assessments : CharField
+  grades : CommaSeparatedIntegerField
   }
 
   class Grade {
-  student_id : int
-  assessment_uuid4 : string
-  student_score : int
-  max_score : int
-  late : boolean
-  missing : boolean
-  excused : boolean
-  incomplete : boolean
+  student_id : UUIDField
+  assessment_uuid4 : CharField
+  student_score : Positiveintegerfield
+  max_score : Positiveintegerfield
+  late : BooleanField
+  missing : BooleanField
+  excused : BooleanField
+  incomplete : BooleanField
   }
 
   class Student {
-  id : integer
-  first_name : string
-  last_name : string
-  age : integer
+  student_id : PositiveIntegerField
+  first_name : CharField
+  last_name : CharField
+  age : PositiveIntegerField
+  student_email : EmailField
   }
 
   class Standard {
-  id_uudid4 : string
-  name : string
-  full_text : string
-  short_text : string
+  id_uudid4 : UUIDField
+  name : CharField
+  full_text : CharField
+  short_text : CharField
   }
 
   class Assessment {
-  id_uuid4 : string
-  qustions : set
-  max_score : int
-  due_date : DateTime
-  publish_date : DateTime
-  unpublish_date : DateTime
-  published : Boolean
-  timed_assessment : boolean
-  time : DateTime
-  number_of_attempts : integer
-  password : string
-  accept_responses : boolean
-  display_answers_at_end : boolean
-  display_score_at_end : boolean
+  id_uuid4 : UUIDField
+  qustions : CharField
+  max_score : Positiveintegerfield
+  due_date : DateTimeField
+  publish_date : DateTimeField
+  unpublish_date : DateTimeField
+  published : BooleanField
+  timed_assessment : BooleanField
+  time : TimeField
+  number_of_attempts : Positiveintegerfield
+  password : CharField
+  accept_responses : BooleanField
+  display_answers_at_end : BooleanField
+  display_score_at_end : BooleanField
   }
 
   class Question {
-  id_uuid4 : string
-  max_score : int
+  id_uuid4 : UUIDField
+  max_score : PositiveIntegerfield
   }
 
   class MultipleChoiceQ {
-  text : string
-  answers : dict
+  text : CharField
+  answers : CharField
   }
 
   class ShortAnswerQ {
-  text : string
-  answers : dict
+  text : CharField
+  answers : ChariField
   }
 
   class DragNDropQ {
-  answers : dict
+  answers : CharField
   }
 
   class LongAnswerQ {
-  text : string
+  text : CharField
   }
 
   Assessment o-- Question
