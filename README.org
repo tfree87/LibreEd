@@ -86,7 +86,7 @@ The following diagram shows the proposed classes that will be created as Django 
   class_uuid4 : UUIDfield
   class_name : CharField
   students : CharField
-  assessments : CharField
+  assessments : TextField
   grades : CommaSeparatedIntegerField
   }
 
@@ -139,21 +139,21 @@ The following diagram shows the proposed classes that will be created as Django 
   }
 
   class MultipleChoiceQ {
-  text : CharField
+  text : TextField
   answers : CharField
   }
 
   class ShortAnswerQ {
-  text : CharField
+  text : TextField
   answers : ChariField
   }
 
   class DragNDropQ {
-  answers : CharField
+  answers : TextField
   }
 
   class LongAnswerQ {
-  text : CharField
+  text : TextField
   }
 
   Assessment o-- Question
