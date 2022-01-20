@@ -78,97 +78,124 @@ Here is a diagram of the proposed structure of what I wish to accomplish general
 #+RESULTS:
 [[file:diagram.png]]
 *** Classes/Django Models
-The following diagram shows the proposed classes that will be created as Django models that will be used by Django to make database tables in PostgreSQL:
-#+begin_src plantuml :exports results :file classes.png
-  @startuml
+The following diagram shows the proposed classes that will be created as Django models that will be used by Django to make database tables in PostgreSQL.
+**** Student Information System
+Classes for the student information system app:
+#+begin_src plantuml :exports results :file sis_classes.png
+    @startuml
 
-  class GradeBook {
-  class_uuid4 : UUIDfield
-  class_name : CharField
-  students : CharField
-  assessments : TextField
-  grades : CommaSeparatedIntegerField
-  }
+    class GradeBook {
+    class_uuid4 : UUIDfield
+    class_name : CharField
+    students : CharField
+    assessments : TextField
+    grades : CommaSeparatedIntegerField
+    }
 
-  class Grade {
-  student_id : UUIDField
-  assessment_uuid4 : CharField
-  student_score : Positiveintegerfield
-  max_score : Positiveintegerfield
-  late : BooleanField
-  missing : BooleanField
-  excused : BooleanField
-  incomplete : BooleanField
-  }
+    class Grade {
+    student_id : UUIDField
+    assessment_uuid4 : CharField
+    student_score : PositiveIntegerField
+    max_score : PositiveIntegerField
+    late : BooleanField
+    missing : BooleanField
+    excused : BooleanField
+    incomplete : BooleanField
+    }
 
-  class Student {
-  student_id : PositiveIntegerField
-  first_name : CharField
-  last_name : CharField
-  age : PositiveIntegerField
-  student_email : EmailField
-  }
+    class Student {
+    id_num : PositiveIntegerField
+    first_name : CharField
+    last_name : CharField
+    age : PositiveIntegerField
+    student_email : EmailField
+    }
 
-  class Standard {
-  id_uudid4 : UUIDField
-  name : CharField
-  full_text : CharField
-  short_text : CharField
-  }
+    class Course {
+    uuid4 : UUIDField
+    name : CharField
+    students_in_class : ManyToManyField
+    }
 
-  class Assessment {
-  id_uuid4 : UUIDField
-  qustions : CharField
-  max_score : Positiveintegerfield
-  due_date : DateTimeField
-  publish_date : DateTimeField
-  unpublish_date : DateTimeField
-  published : BooleanField
-  timed_assessment : BooleanField
-  time : TimeField
-  number_of_attempts : Positiveintegerfield
-  password : CharField
-  accept_responses : BooleanField
-  display_answers_at_end : BooleanField
-  display_score_at_end : BooleanField
-  }
-
-  class Question {
-  id_uuid4 : UUIDField
-  max_score : PositiveIntegerfield
-  }
-
-  class MultipleChoiceQ {
-  text : TextField
-  answers : CharField
-  }
-
-  class ShortAnswerQ {
-  text : TextField
-  answers : ChariField
-  }
-
-  class DragNDropQ {
-  answers : TextField
-  }
-
-  class LongAnswerQ {
-  text : TextField
-  }
-
-  Assessment o-- Question
-  Question <|-- ShortAnswerQ
-  Question <|-- MultipleChoiceQ
-  Question <|-- DragNDropQ
-  Question <|-- LongAnswerQ
+    class Enrolled {
+    student : ForeignKey
+    course : Foreignkey
+    date_enrolled : DateField
+    }
 
   GradeBook o-- Grade
 
   @enduml
+ #+end_src
+
+ #+RESULTS:
+ [[file:sis_classes.png]]
+
+**** Assessment Creator
+Classes for the assessment creator app:
+ #+begin_src plantuml :file ac_classes.png
+   @startuml
+
+   class Standard {
+   id_uudid4 : UUIDField
+   name : CharField
+   full_text : CharField
+   short_text : CharField
+   }
+
+   class Assessment {
+   id_uuid4 : UUIDField
+   qustions : CharField
+   max_score : PositiveIntegerField
+   due_date : DateTimeField
+   publish_date : DateTimeField
+   unpublish_date : DateTimeField
+   published : BooleanField
+   timed_assessment : BooleanField
+   time : TimeField
+   number_of_attempts : PositiveIntegerField
+   password : CharField
+   accept_responses : BooleanField
+   display_answers_at_end : BooleanField
+   display_score_at_end : BooleanField
+   }
+
+   class Question {
+   id_uuid4 : UUIDField
+   max_score : PositiveIntegerField
+   }
+
+   class MultipleChoiceQ {
+   text : TextField
+   answers : CharField
+   }
+
+   class ShortAnswerQ {
+   text : TextField
+   answers : ChariField
+   }
+
+   class DragNDropQ {
+   image : ImageField
+   answers : TextField
+   }
+
+   class LongAnswerQ {
+   text : TextField
+           word_limit : PositiveIntegerField
+   }
+
+   Assessment o-- Question
+   Question <|-- ShortAnswerQ
+   Question <|-- MultipleChoiceQ
+   Question <|-- DragNDropQ
+   Question <|-- LongAnswerQ
+
+   @enduml
 #+end_src
 
 #+RESULTS:
-[[file:classes.png]]
+[[file:ac_classes.png]]
 
 ** Priorities
 1. Digital gradebook software
